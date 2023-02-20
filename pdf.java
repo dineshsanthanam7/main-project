@@ -1,5 +1,7 @@
 //implementation 'com.itextpdf:itextpdf:5.5.13'
 
+package com.example.test;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -96,55 +98,35 @@ public class MainActivity extends AppCompatActivity {
                         s1[y]="";
                     }
                     if(s1[y].startsWith("UNIVERSITY")) {
+
                         s1[y]="";
                     }
 
-                }
-                StringJoiner joiner = new StringJoiner("");
-                for(int i = 0; i < s1.length; i++) {
+                if(s1[y].startsWith("No")) {
 
-                    joiner.add(s1[i]);
-                    joiner.add(" ");
+                    s1[y]="";
                 }
-                String str = joiner.toString();
-                String[]dk=str.split("\\s");
+
+                if(s1[y].startsWith("Page:")) {
+
+                    s1[y]="";
+                }
+                   
+
+
+
+
+                }
+             
 
                 List<String> list1=new ArrayList<String>();
-                for(String lang:dk){
-                    list1.add(lang);
+          
+                for(int i = 0; i < s1.length; i++){
+                   list1.add(s1[i]) ;
                 }
 
                 list1.removeAll(Arrays.asList("", null));
-                String st="Papers:";
-                int u=0;
-                int c=0;
-                for( u=0;u<list1.size();u++) {
-                    try {
-                        c=list1.indexOf(st);
-
-                        //System.out.println(c);
-                        list1.remove(c);
-                        list1.remove(c);
-
-                    }
-                    catch(Exception e) {
-                    }
-                }
-                st="Page:";
-                for(u=0;u<list1.size();u++) {
-                    try {
-                        c=list1.indexOf(st);
-
-
-                        list1.remove(c);
-                        list1.remove(c);
-
-                    }
-                    catch(Exception e) {
-
-                    }
-                }
-
+              
                 pdfReader.close();
                 return list1.toString();
             } catch (IOException e) {
@@ -161,3 +143,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+
